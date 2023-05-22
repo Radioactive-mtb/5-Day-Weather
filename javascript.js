@@ -2,7 +2,6 @@ var key = "467de7ad3a55a3c9940ee7f2f771114a";
 
 var search = document.getElementById("user-input");
 var searchButton = document.getElementById("search");
-var newCity = document.getElementById("current-city");
 var cityBtn = document.getElementById("selectable");
 var searchHistory = [];
 var city;
@@ -60,7 +59,7 @@ function start(event) {
         })
         .then(function (data) {
           console.log(data);
-          newCity.textContent = data.city.name;
+
           for (var i = 0; i < 6; i++) {
             document.getElementById("temp-" + i + "").textContent =
               "temp: " + Number(data.list[i].main.temp).toFixed(0) + "°";
@@ -102,57 +101,6 @@ for (let i = 0; i < 6; i++) {
   document.getElementById("date-" + i + "").textContent = weekday[i];
 }
 searchButton.addEventListener("click", start);
-
-window.addEventListener("load", () => {
-  var lat;
-  var lon;
-
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      lon = position.coords.longitude;
-      lat = position.coords.latitude;
-      queryURL =
-        "https://api.openweathermap.org/data/2.5/forecast?lat=" +
-        lat +
-        "&lon=" +
-        lon +
-        "&appid=" +
-        key +
-        "&units=imperial";
-
-      fetch(queryURL)
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (data) {
-          console.log(data);
-          newCity.textContent = data.city.name;
-
-          for (var i = 0; i < 6; i++) {
-            document.getElementById("temp-" + i + "").textContent =
-              "Temp: " + Number(data.list[i].main.temp).toFixed(0) + "°";
-          }
-
-          for (var i = 0; i < 6; i++) {
-            document.getElementById("wind-" + i + "").textContent =
-              "Wind: " + Number(data.list[i].wind.speed).toFixed(0) + " mph";
-          }
-
-          for (var i = 0; i < 6; i++) {
-            document.getElementById("hum-" + i + "").textContent =
-              "Humidity: " + Number(data.list[i].main.humidity) + "%";
-          }
-
-          for (var i = 0; i < 6; i++) {
-            document.getElementById("icon-" + i + "").src =
-              "https://openweathermap.org/img/wn/" +
-              data.list[i].weather[0].icon +
-              ".png";
-          }
-        });
-    });
-  }
-});
 
 function history(event) {
   if (!search.value) {
