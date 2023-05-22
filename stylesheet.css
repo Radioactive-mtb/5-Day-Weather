@@ -1,0 +1,34 @@
+* {
+    box-sizing: border-box;
+}
+
+header {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: larger;
+    color: black;
+    background-color: lightblue;
+}
+
+.cities-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    border: 1px solid black;
+}
+
+ul {
+    background-color: aqua;
+    
+}
+li {
+    text-decoration: none;
+}
+
+.current-weather {
+    position: relative;
+    
+}
