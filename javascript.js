@@ -117,7 +117,7 @@ window.addEventListener("load", () => {
         "&lon=" +
         lon +
         "&appid=" +
-        APIKey +
+        key +
         "&units=imperial";
 
       fetch(queryURL)
